@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="marvelApi">
+	<head>
+		
+			<title>MyApi</title>
+
+			<link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+			<link rel="stylesheet" href="src/css/style.css">
+
+
+			<script src="bower_components/jquery/dist/jquery.js"></script>
+			<script src="bower_components/angular/angular.js"></script>
+			<script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+			<script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+
+			<script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+			<script src="bower_components/angular-md5/angular-md5.js"></script>
+			<script src="src/js/app.js"></script>
+	</head>
+
+
+	<body>
+
+	<div ng-controller="marvel">
+		<div class="continer">
+			<div class="row">
+				<form class="form-inline col-md-7">
+					<div class="form-group" ng-init=getCharacters()>
+					   <input type="text" class="form-control m-l" placeholder="Name" ng-model="qwerty">
+					   	<table class="m-l table table-bordered" >
+					   		<tr ng-repeat="character in filterData = (characters | filter:qwerty) | limitTo:5:5*(page-1)">
+					   			<td>{{character.name}}</td>
+					   			<td><a ui-sref="info" ui-sref-active="active" ng-click="characterInfo(character.name,character.thumbnail.path,character.thumbnail.extension)"><img ng-src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"></a></td>
+					   			<td> <a ui-sref="info" ui-sref-active="active" ng-click="characterInfo(character.name,character.thumbnail.path,character.thumbnail.extension)">More</a>
+					   	</table>
+					   	<ul uib-pagination class="pagination-sm pagination m-l" total-items="filterData.length" ng-model="page"
+					   				ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=5></ul>
+					 </div>
+			 	</form>
+			 	<div class="col-md-4">
+			 		<ui-view></ui-view>
+			 	</div>
+			 </div>
+		  </div>
+	</div>
+
+	</body>
+
+
+
+</html>
