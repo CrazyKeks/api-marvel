@@ -1,6 +1,19 @@
-<div class="text-center" ng-init="characterInfo(character)">
-	<div class="center-block">
-		<p>{{name}}</p>
-		<img ng-src="{{img}}.{{jpg}}">
+	<body>
+	<div ng-controller="marvelInfo">
+		<div class="continer">
+			<div class="row">
+				<ui-view></ui-view>
+				<form class="form-inline col-md-7">
+					<div class="form-group col-md-offset-2" ng-init="infoCharacters()">
+							<h3>Имя персонажа: {{info.name}}</h3>
+							<img ng-src="{{info.thumbnail.path}}.{{info.thumbnail.extension}}">
+							<p>{{info.description}}</p>
+							<td>{{info.comics.items}}</td>
+						</div>
+					 </div>
+			 	</form>
+			 </div>
+		  </div>
 	</div>
-</div>
+
+	</body>

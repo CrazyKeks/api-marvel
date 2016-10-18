@@ -1,0 +1,23 @@
+
+	<body>
+	<div ng-controller="marvel">
+		<div class="continer">
+			<div class="row">
+				<form class="form-inline col-md-7">
+					<div class="form-group" ng-init=getCharacters()>
+					   <input type="text" class="form-control m-l" placeholder="Name" ng-model="qwerty">
+					   	<table class="m-l table table-bordered" >
+					   		<tr ng-repeat="character in filterData = (characters | filter:qwerty) | limitTo:5:5*(page-1)">
+					   			<td>{{character.name}}</td>
+					   			<td><a ui-sref="info({id:character.id})" ng-click="infoCharacters(character.id)"><img ng-src="{{character.thumbnail.path}}.{{character.thumbnail.extension}}"></a></td>
+					   			<td><a ui-sref="info({id:character.id})" ng-click="infoCharacters(character.id)">More</a></td>
+					   	</table>
+					   	<ul uib-pagination class="pagination-sm pagination m-l" total-items="filterData.length" ng-model="page"
+					   				ng-change="pageChanged()" previous-text="&lsaquo;" next-text="&rsaquo;" items-per-page=5></ul>
+					 </div>
+			 	</form>
+			 </div>
+		  </div>
+	</div>
+
+	</body>
